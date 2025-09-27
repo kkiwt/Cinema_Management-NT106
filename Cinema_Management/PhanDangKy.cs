@@ -21,15 +21,6 @@ namespace Cinema_Management
         
         private void NutDangKy_Click(object sender, EventArgs e)
         {
-            // Kiểm tra control null
-            if (HoTen == null || TenDangNhap == null || SDT == null || Email == null || MatKhau == null || XacNhanMatKhau == null
-                || Ngay == null || Thang == null || Nam == null)
-            {
-                MessageBox.Show("Một số control chưa được khởi tạo. Vui lòng kiểm tra lại tên trong Designer.");
-                return;
-            }
-
-            // Lấy dữ liệu từ form
             string hoTen = HoTen.Text.Trim();
             string tenDangNhap = TenDangNhap.Text.Trim();
             string sdt = SDT.Text.Trim();
@@ -58,7 +49,6 @@ namespace Cinema_Management
                 return;
             }
 
-            // Validate dữ liệu
             if (tenDangNhap == "" || hoTen == "" || sdt == "" || email == "" || matKhau == "")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
