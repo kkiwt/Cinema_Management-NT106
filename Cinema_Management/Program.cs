@@ -18,6 +18,7 @@ namespace Cinema_Management
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new PhanDangNhap());
             // push
+            
         }
     }
 }

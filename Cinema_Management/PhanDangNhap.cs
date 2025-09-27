@@ -38,5 +38,10 @@ namespace Cinema_Management
             DangKy.Show();
             DangKy.FormClosed += (s, args) => this.Close();
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
