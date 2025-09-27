@@ -16,7 +16,7 @@ namespace Cinema_Management
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PhanDangKy());
+            Application.Run(new PhanDangNhap());
         }
     }
 }

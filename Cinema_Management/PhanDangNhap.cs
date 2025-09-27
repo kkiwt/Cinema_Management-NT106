@@ -21,5 +21,22 @@ namespace Cinema_Management
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong();
+            this.Hide(); // ẩn form hiện tại
+            GiaoDien.Show();
+            GiaoDien.FormClosed += (s, args) => this.Close(); // đóng form cũ khi form mới tắt
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            PhanDangKy DangKy = new PhanDangKy();
+            this.Hide();
+            DangKy.Show();
+            DangKy.FormClosed += (s, args) => this.Close();
+        }
     }
 }
