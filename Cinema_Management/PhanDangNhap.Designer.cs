@@ -100,6 +100,7 @@
             this.Controls.Add(this.label1);
             this.Name = "PhanDangNhap";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.PhanDangNhap_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
