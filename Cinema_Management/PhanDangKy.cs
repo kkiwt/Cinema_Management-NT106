@@ -28,26 +28,7 @@ namespace Cinema_Management
             string matKhau = MatKhau.Text;
             string xacNhanMK = XacNhanMatKhau.Text;
 
-            if (Ngay.SelectedItem == null || Thang.SelectedItem == null || Nam.SelectedItem == null)
-            {
-                MessageBox.Show("Vui lòng chọn ngày/tháng/năm sinh.");
-                return;
-            }
-
-            int ngay = int.Parse(Ngay.SelectedItem.ToString());
-            int thang = int.Parse(Thang.SelectedItem.ToString());
-            int nam = int.Parse(Nam.SelectedItem.ToString());
-
-            DateTime ngaySinh;
-            try
-            {
-                ngaySinh = new DateTime(nam, thang, ngay);
-            }
-            catch
-            {
-                MessageBox.Show("Ngày tháng năm không hợp lệ!");
-                return;
-            }
+            DateTime ngaySinh = NgayThangNam.Value;
 
             if (tenDangNhap == "" || hoTen == "" || sdt == "" || email == "" || matKhau == "")
             {
@@ -207,7 +188,7 @@ namespace Cinema_Management
             DangNhap.FormClosed += (s, args) => this.Close();
         }
 
-
+        
     }
 }
 // day la pull test

@@ -40,17 +40,15 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.HoTen = new System.Windows.Forms.TextBox();
-            this.Ngay = new System.Windows.Forms.ComboBox();
             this.SDT = new System.Windows.Forms.TextBox();
             this.Email = new System.Windows.Forms.TextBox();
             this.TenDangNhap = new System.Windows.Forms.TextBox();
             this.MatKhau = new System.Windows.Forms.TextBox();
-            this.Thang = new System.Windows.Forms.ComboBox();
-            this.Nam = new System.Windows.Forms.ComboBox();
             this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.XacNhanMatKhau = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.NgayThangNam = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // NutDangKy
@@ -191,49 +189,6 @@
             this.HoTen.Size = new System.Drawing.Size(354, 35);
             this.HoTen.TabIndex = 4;
             // 
-            // Ngay
-            // 
-            this.Ngay.BackColor = System.Drawing.SystemColors.WindowText;
-            this.Ngay.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Ngay.ForeColor = System.Drawing.SystemColors.Window;
-            this.Ngay.FormattingEnabled = true;
-            this.Ngay.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12",
-            "13",
-            "14",
-            "15",
-            "16",
-            "17",
-            "18",
-            "19",
-            "20",
-            "21",
-            "22",
-            "23",
-            "24",
-            "25",
-            "26",
-            "27",
-            "28",
-            "29",
-            "30",
-            "31"});
-            this.Ngay.Location = new System.Drawing.Point(763, 172);
-            this.Ngay.Name = "Ngay";
-            this.Ngay.Size = new System.Drawing.Size(102, 29);
-            this.Ngay.TabIndex = 5;
-            // 
             // SDT
             // 
             this.SDT.BackColor = System.Drawing.SystemColors.WindowText;
@@ -277,108 +232,6 @@
             this.MatKhau.Name = "MatKhau";
             this.MatKhau.Size = new System.Drawing.Size(354, 35);
             this.MatKhau.TabIndex = 4;
-            // 
-            // Thang
-            // 
-            this.Thang.BackColor = System.Drawing.SystemColors.WindowText;
-            this.Thang.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Thang.ForeColor = System.Drawing.SystemColors.Window;
-            this.Thang.FormattingEnabled = true;
-            this.Thang.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "12"});
-            this.Thang.Location = new System.Drawing.Point(889, 172);
-            this.Thang.Name = "Thang";
-            this.Thang.Size = new System.Drawing.Size(102, 29);
-            this.Thang.TabIndex = 5;
-            // 
-            // Nam
-            // 
-            this.Nam.BackColor = System.Drawing.SystemColors.WindowText;
-            this.Nam.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nam.ForeColor = System.Drawing.SystemColors.Window;
-            this.Nam.FormattingEnabled = true;
-            this.Nam.Items.AddRange(new object[] {
-            "2025",
-            "2024",
-            "2023",
-            "2022",
-            "2021",
-            "2020",
-            "2019",
-            "2018",
-            "2017",
-            "2016",
-            "2015",
-            "2014",
-            "2013",
-            "2012",
-            "2011",
-            "2010",
-            "2009",
-            "2008",
-            "2007",
-            "2006",
-            "2005",
-            "2004",
-            "2003",
-            "2002",
-            "2001",
-            "2000",
-            "1999",
-            "1998",
-            "1997",
-            "1996",
-            "1995",
-            "1994",
-            "1993",
-            "1992",
-            "1991",
-            "1990",
-            "1989",
-            "1988",
-            "1987",
-            "1986",
-            "1985",
-            "1984",
-            "1983",
-            "1982",
-            "1981",
-            "1980",
-            "1979",
-            "1978",
-            "1977",
-            "1976",
-            "1975",
-            "1974",
-            "1973",
-            "1972",
-            "1971",
-            "1970",
-            "1969",
-            "1968",
-            "1967",
-            "1966",
-            "1965",
-            "1964",
-            "1963",
-            "1962",
-            "1961",
-            "1960"});
-            this.Nam.Location = new System.Drawing.Point(1015, 172);
-            this.Nam.Name = "Nam";
-            this.Nam.Size = new System.Drawing.Size(102, 29);
-            this.Nam.TabIndex = 5;
             // 
             // comboBox4
             // 
@@ -461,6 +314,20 @@
             this.label10.TabIndex = 6;
             this.label10.Text = "Bạn đã có tài khoản?";
             // 
+            // NgayThangNam
+            // 
+            this.NgayThangNam.CalendarForeColor = System.Drawing.SystemColors.Window;
+            this.NgayThangNam.CalendarMonthBackground = System.Drawing.SystemColors.WindowText;
+            this.NgayThangNam.CalendarTitleBackColor = System.Drawing.SystemColors.WindowText;
+            this.NgayThangNam.CalendarTitleForeColor = System.Drawing.SystemColors.Window;
+            this.NgayThangNam.CustomFormat = "";
+            this.NgayThangNam.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NgayThangNam.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.NgayThangNam.Location = new System.Drawing.Point(763, 178);
+            this.NgayThangNam.Name = "NgayThangNam";
+            this.NgayThangNam.Size = new System.Drawing.Size(354, 28);
+            this.NgayThangNam.TabIndex = 7;
+            // 
             // PhanDangKy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -469,11 +336,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1181, 721);
+            this.Controls.Add(this.NgayThangNam);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.Nam);
-            this.Controls.Add(this.Thang);
             this.Controls.Add(this.comboBox4);
-            this.Controls.Add(this.Ngay);
             this.Controls.Add(this.XacNhanMatKhau);
             this.Controls.Add(this.MatKhau);
             this.Controls.Add(this.TenDangNhap);
@@ -513,17 +378,15 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox HoTen;
-        private System.Windows.Forms.ComboBox Ngay;
         private System.Windows.Forms.TextBox SDT;
         private System.Windows.Forms.TextBox Email;
         private System.Windows.Forms.TextBox TenDangNhap;
         private System.Windows.Forms.TextBox MatKhau;
-        private System.Windows.Forms.ComboBox Thang;
-        private System.Windows.Forms.ComboBox Nam;
         private System.Windows.Forms.ComboBox comboBox4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox XacNhanMatKhau;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DateTimePicker NgayThangNam;
     }
 }
 
