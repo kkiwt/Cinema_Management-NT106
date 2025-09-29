@@ -24,6 +24,27 @@ namespace Cinema_Management
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Lấy giá trị từ TextBox
+            string username = textBoxUser.Text;
+            string password = textBoxPass.Text;
+
+            // Kiểm tra nếu username hoặc password rỗng
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                MessageBox.Show("Vui lòng nhập tên đăng nhập.");
+                textBoxUser.Focus();
+                return;
+            }
+            else if (string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu.");
+                textBoxPass.Focus();
+                return;
+            }
+
+            //Lấy username và password từ database để so sánh
+
+
             GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong();
             this.Hide(); // ẩn form hiện tại
             GiaoDien.Show();
@@ -151,6 +172,11 @@ namespace Cinema_Management
         }
 
         private void PhanDangNhap_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
