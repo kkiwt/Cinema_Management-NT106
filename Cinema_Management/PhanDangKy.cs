@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -18,169 +19,146 @@ namespace Cinema_Management
             InitializeComponent();
         }
 
-        
+        public static string ToSha256(string input) // Ham duoc viet boi ban Hoang Nhat Huy 
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(input);
+                byte[] hashBytes = sha256.ComputeHash(bytes);
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+            }
+        }
+        string connectionString = "Server=.;Database=USERS;Integrated Security=True;";
         private void NutDangKy_Click(object sender, EventArgs e)
         {
-            string hoTen = HoTen.Text.Trim();
-            string tenDangNhap = TenDangNhap.Text.Trim();
-            string sdt = SDT.Text.Trim();
-            string email = Email.Text.Trim();
-            string matKhau = MatKhau.Text;
-            string xacNhanMK = XacNhanMatKhau.Text;
+            string Name = HoTen.Text.Trim();
+            string TenDangNhap = Username.Text.Trim();
+            string SDT = SoDienThoai.Text.Trim();
+            string E_mail = Email.Text.Trim();
+            string MatKhauGoc = MatKhau.Text;
+            string XacNhanMK = XacNhanMatKhau.Text;
+            string Area = KhuVuc.SelectedItem?.ToString();
+            DateTime NgaySinh = NgayThangNamSinh.Value.Date;
 
-            DateTime ngaySinh = NgayThangNam.Value;
-
-            if (tenDangNhap == "" || hoTen == "" || sdt == "" || email == "" || matKhau == "")
+            if (TenDangNhap == "" || Name == "" || SDT == "" || E_mail == "" || MatKhauGoc == "" || XacNhanMK == "")
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin.");
                 return;
             }
 
-            if (!Regex.IsMatch(hoTen, @"^[a-zA-ZÀ-ỹ\s]+$"))
+            if (!Regex.IsMatch(Name, @"^[a-zA-ZÀ-ỹ\s]+$"))
             {
                 MessageBox.Show("Họ tên không hợp lệ (chỉ cho phép chữ).");
                 return;
             }
 
-            if (!Regex.IsMatch(sdt, @"^(0\d{9}|\+84\d{9})$"))
+            if (!Regex.IsMatch(SDT, @"^(0\d{9}|\+84\d{9})$"))
             {
                 MessageBox.Show("Số điện thoại không hợp lệ.");
                 return;
             }
 
-            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            if (!Regex.IsMatch(E_mail, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Email không hợp lệ.");
                 return;
             }
 
-            if (!Regex.IsMatch(matKhau, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{6,}$"))
+            if (!Regex.IsMatch(MatKhauGoc, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).{8,}$"))
             {
-                MessageBox.Show("Mật khẩu phải >=6 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt.");
+                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự, có chữ hoa, chữ thường, số và ký tự đặc biệt.");
                 return;
             }
 
-            if (matKhau != xacNhanMK)
+            if (MatKhauGoc != XacNhanMK)
             {
                 MessageBox.Show("Xác nhận mật khẩu không trùng khớp.");
                 return;
             }
-
-
-            GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong();
-            this.Hide(); // ẩn form hiện tại
-            GiaoDien.Show();
-            GiaoDien.FormClosed += (s, args) => this.Close(); // đóng form cũ khi form mới tắt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            // Danh cho phan SQL Server ben duoi
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        }
-        private void ConnectToDatabase()
-        {
-            string connectionString = "Server=localhost;Database=mydatabase;UserId = myuser; Password = mypassword; ";
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            if (NgaySinh > DateTime.Today)
             {
-                try
+                MessageBox.Show("Ngày sinh không hợp lệ (Không được là ngày trong tương lai).");
+                return;
+            }
+
+            try
+            {
+
+                string MatKhauDaHash = ToSha256(MatKhauGoc); // dung thuat toan SHA256 de ma hoa mat khau
+
+                // 3. Lenh SQL INSERT 
+                string sqlInsert = @"
+            INSERT INTO UserClient (Username, HoTen, NgaySinh, SDT, Email, KhuVuc, MaHashCuaMatKhau) 
+            VALUES (@Username, @HoTen, @NgaySinh, @SDT, @Email, @KhuVuc, @MaHashCuaMatKhau)";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    MessageBox.Show("Kết nối thành công!");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi: " + ex.Message);
+                    using (SqlCommand command = new SqlCommand(sqlInsert, connection))
+                    {
+                        // 4. Thêm tham số
+                        command.Parameters.AddWithValue("@Username", TenDangNhap);
+                        command.Parameters.AddWithValue("@HoTen", Name);
+
+                        // DateTime được truyền trực tiếp, C# tự xử lý định dạng
+                        command.Parameters.AddWithValue("@NgaySinh", NgaySinh);
+
+                        command.Parameters.AddWithValue("@SDT", SDT);
+                        command.Parameters.AddWithValue("@Email", E_mail);
+                        command.Parameters.AddWithValue("@KhuVuc", Area ?? (object)DBNull.Value); // Xử lý nếu ComboBox trống
+
+                        // Truyền MÃ HASH vào database
+                        command.Parameters.AddWithValue("@MaHashCuaMatKhau", MatKhauDaHash);
+
+
+                        int rowsAffected = command.ExecuteNonQuery(); // Execute lenh SQL
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Đăng ký tài khoản thành công!", "Thành công");
+                            // 1. TẠO đối tượng UserInfo từ dữ liệu vừa nhập
+                            // Gán giá trị KhuVuc, xử lý trường hợp Area là null
+                            string finalArea = Area ?? "Chưa có";
+
+                            UserInfo NewUser = new UserInfo
+                            {
+                                Username = TenDangNhap,
+                                HoTen = Name,
+                                NgaySinh = NgaySinh,
+                                SDT = SDT, 
+                                Email = E_mail,
+                                KhuVuc = finalArea
+                            };
+                            GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(NewUser);
+                            this.Hide(); // Hide Form dang ky
+                            GiaoDien.Show();
+                            GiaoDien.FormClosed += (s, args) => this.Close(); // đóng form cũ khi form mới tắt
+                        }
+                    }
                 }
             }
+            catch (SqlException ex)
+            {
+                // Loi 2627 la loi trung lap Username
+                if (ex.Number == 2627)
+                {
+                    MessageBox.Show("Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.", "Lỗi Database");
+                }
+                else
+                {
+                    MessageBox.Show($"Lỗi kết nối: {ex.Message}", "Lỗi");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi");
+            }
+
+
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+
+        private void NutDangNhap_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             PhanDangNhap DangNhap = new PhanDangNhap();
             this.Hide();
@@ -188,7 +166,25 @@ namespace Cinema_Management
             DangNhap.FormClosed += (s, args) => this.Close();
         }
 
-        
+        private void NgayThangNam_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HoTen_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    public class UserInfo
+    {
+        public string Username { get; set; }
+        public string HoTen { get; set; }
+        public DateTime NgaySinh { get; set; }
+        public string SDT { get; set; }
+        public string Email { get; set; }
+        public string KhuVuc { get; set; }
     }
 }
 // day la pull test

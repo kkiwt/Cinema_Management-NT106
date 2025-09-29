@@ -66,6 +66,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="GiaoDienSauKhiDaDangNhapHoacDangKyXong.resx">
+      <DependentUpon>GiaoDienSauKhiDaDangNhapHoacDangKyXong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PhanDangKy.resx">
       <DependentUpon>PhanDangKy.cs</DependentUpon>
     </EmbeddedResource>
