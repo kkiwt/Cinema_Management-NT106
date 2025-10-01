@@ -1,5 +1,5 @@
 # Cinema_Management-NT106
-Được viết ngày 29/9/2025: Sắp hoàn thành phần Đăng Ký/ Đăng nhập
+Được viết ngày 1/10/2025: Đã hoàn thành phần Đăng Ký/ Đăng nhập 
 - Được thực hiện bởi nhóm 7
 Danh sách nhóm 7:
 + Nguyễn Tuấn Kiệt - 24520907 - Nhóm Trưởng
