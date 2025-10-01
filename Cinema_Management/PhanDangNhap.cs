@@ -17,17 +17,18 @@ namespace Cinema_Management
         {
             InitializeComponent();
         }
-        // Đặt hàm này trong class PhanDangNhap
+
         private UserInfo LayVaTaoThongTinUser(string Username)
         {
             UserInfo User = null;
+            // truy vấn thông tin từ database thông qua Username nếu trùng với username mà người dùng nhập vào
             string sqlSelectUser = @"
         SELECT HoTen, NgaySinh, SDT, Email, KhuVuc 
         FROM UserClient 
         WHERE Username = @Username";
 
-            // Lấy chuỗi kết nối từ biến đã khai báo trong Form PhanDangNhap (giả sử tên là connectionString)
-            string ConnectionString = "Server=DESKTOP-3GS50FD;Database=USERS;Integrated Security=True;";
+            // Kết nối với database
+            string ConnectionString = "Server=.;Database=USERS;Integrated Security=True;";
 
             try
             {
@@ -48,17 +49,17 @@ namespace Cinema_Management
                                 User.SDT = reader["SDT"].ToString();
                                 User.Email = reader["Email"].ToString();
 
-                                // Xử lý giá trị NULL từ database
+   
                                 User.KhuVuc = reader["KhuVuc"] == DBNull.Value ? "" : reader["KhuVuc"].ToString();
 
-                                // Xử lý NgaySinh (kiểm tra DBNull vì NgaySinh có thể là NULL)
+                  
                                 if (reader["NgaySinh"] != DBNull.Value)
                                 {
                                     User.NgaySinh = (DateTime)reader["NgaySinh"];
                                 }
                                 else
                                 {
-                                    User.NgaySinh = DateTime.MinValue; // Gán giá trị mặc định nếu là NULL
+                                    User.NgaySinh = DateTime.MinValue; 
                                 }
                             }
                         }
@@ -71,7 +72,7 @@ namespace Cinema_Management
             }
             return User;
         }
-        public static string ToSha256(string input)
+        public static string ToSha256(string input) // hàm thuật toán SHA-256
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -84,13 +85,13 @@ namespace Cinema_Management
         {
 
         }
-        private const string connectionString = "Server=.;Database=USERS;Integrated Security=True;";
+        private const string connectionString = "Server=.;Database=USERS;Integrated Security=True;"; // Kết nối với database
         private void button1_Click(object sender, EventArgs e)
         {
 
 
 
-            string Username = TenDangNhap.Text.Trim();
+            string Username = TenDangNhap.Text.Trim(); 
             string MatKhauNhap = MatKhau.Text; 
 
             if (string.IsNullOrEmpty(Username) || string.IsNullOrEmpty(MatKhauNhap))
@@ -101,6 +102,7 @@ namespace Cinema_Management
 
             // Tên cột phải khớp: MaHashCuaMatKhau
             string sqlSelectHash = "SELECT MaHashCuaMatKhau FROM UserClient WHERE Username = @Ten";
+            // Chọn mã Hash của Mật khẩu từ bảng UserClient nếu Username trùng  với Ten , là username người dùng nhập vào
 
             string matKhauHashTrongDB = null;
 
@@ -114,14 +116,13 @@ namespace Cinema_Management
 
                         command.Parameters.AddWithValue("@Ten", Username);
 
-                        // ExecuteScalar: Lấy ra giá trị đầu tiên của hàng đầu tiên (chính là mã Hash)
                         object result = command.ExecuteScalar();
 
                         if (result != null)
                         {
                             matKhauHashTrongDB = result.ToString();
                         }
-                        // Nếu result là null, nghĩa là không tìm thấy Username nào.
+
                     }
                 }
 
@@ -138,7 +139,7 @@ namespace Cinema_Management
                 if (hashMatKhauNhap == matKhauHashTrongDB)
                 {
                     MessageBox.Show("Đăng nhập thành công!", "Thành công");
-                    // 1. LẤY và TẠO đối tượng UserInfo
+
                     UserInfo CurrentUser = LayVaTaoThongTinUser(Username);
 
                     if (CurrentUser == null)
@@ -150,7 +151,7 @@ namespace Cinema_Management
                     GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(CurrentUser);
                     this.Hide();
                     GiaoDien.Show();
-                    GiaoDien.FormClosed += (s, args) => this.Close(); // đóng form cũ khi form mới tắt
+                    GiaoDien.FormClosed += (s, args) => this.Close(); 
                 }
                 else
                 {

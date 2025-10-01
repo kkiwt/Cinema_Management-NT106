@@ -23,7 +23,6 @@ namespace Cinema_Management
             CurrentUser = User; // Lưu thông tin người dùng
         }
 
-        // Sử dụng thông tin trong sự kiện Load
         private void GiaoDienSauKhiDaDangNhapHoacDangKyXong_Load(object sender, EventArgs e)
         {
 
@@ -33,7 +32,7 @@ namespace Cinema_Management
         {
 
         }
-
+       
         private void TaiKhoanCuaToi_Click(object sender, EventArgs e)
         {
             GiaoDienTaiKhoanCuaToi TaiKhoanCuaToi = new GiaoDienTaiKhoanCuaToi(CurrentUser);

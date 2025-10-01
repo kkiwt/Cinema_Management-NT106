@@ -19,7 +19,7 @@ namespace Cinema_Management
             InitializeComponent();
         }
 
-        public static string ToSha256(string input) // Ham duoc viet boi ban Hoang Nhat Huy 
+        public static string ToSha256(string input) // Hàm được viết bởi bạn Hoàng Nhật Huy
         {
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -84,9 +84,9 @@ namespace Cinema_Management
             try
             {
 
-                string MatKhauDaHash = ToSha256(MatKhauGoc); // dung thuat toan SHA256 de ma hoa mat khau
+                string MatKhauDaHash = ToSha256(MatKhauGoc); // dùng thuật toán SHA256 để mã hóa mật khẩu
 
-                // 3. Lenh SQL INSERT 
+                // Thục thi lệnh INSERT INTO vào bảng UserClient
                 string sqlInsert = @"
             INSERT INTO UserClient (Username, HoTen, NgaySinh, SDT, Email, KhuVuc, MaHashCuaMatKhau) 
             VALUES (@Username, @HoTen, @NgaySinh, @SDT, @Email, @KhuVuc, @MaHashCuaMatKhau)";
@@ -96,11 +96,11 @@ namespace Cinema_Management
                     connection.Open();
                     using (SqlCommand command = new SqlCommand(sqlInsert, connection))
                     {
-                        // 4. Thêm tham số
+                        // Truyền tham số
                         command.Parameters.AddWithValue("@Username", TenDangNhap);
                         command.Parameters.AddWithValue("@HoTen", Name);
 
-                        // DateTime được truyền trực tiếp, C# tự xử lý định dạng
+                        
                         command.Parameters.AddWithValue("@NgaySinh", NgaySinh);
 
                         command.Parameters.AddWithValue("@SDT", SDT);
@@ -111,16 +111,15 @@ namespace Cinema_Management
                         command.Parameters.AddWithValue("@MaHashCuaMatKhau", MatKhauDaHash);
 
 
-                        int rowsAffected = command.ExecuteNonQuery(); // Execute lenh SQL
+                        int rowsAffected = command.ExecuteNonQuery(); // Execute lệnh SQL
 
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Đăng ký tài khoản thành công!", "Thành công");
-                            // 1. TẠO đối tượng UserInfo từ dữ liệu vừa nhập
-                            // Gán giá trị KhuVuc, xử lý trường hợp Area là null
+
                             string finalArea = Area ?? "Chưa có";
 
-                            UserInfo NewUser = new UserInfo
+                            UserInfo NewUser = new UserInfo  // Khởi tạo đối tượng NewUser thuộc lớp UserInfo để thông tin người dùng lưu vào đối tượng NewUser
                             {
                                 Username = TenDangNhap,
                                 HoTen = Name,
@@ -129,8 +128,8 @@ namespace Cinema_Management
                                 Email = E_mail,
                                 KhuVuc = finalArea
                             };
-                            GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(NewUser);
-                            this.Hide(); // Hide Form dang ky
+                            GiaoDienSauKhiDaDangNhapHoacDangKyXong GiaoDien = new GiaoDienSauKhiDaDangNhapHoacDangKyXong(NewUser); // Constructor dùng để khởi tạo form có tham số là đối tượng NewUser
+                            this.Hide(); 
                             GiaoDien.Show();
                             GiaoDien.FormClosed += (s, args) => this.Close(); // đóng form cũ khi form mới tắt
                         }
@@ -139,7 +138,7 @@ namespace Cinema_Management
             }
             catch (SqlException ex)
             {
-                // Loi 2627 la loi trung lap Username
+                // Lỗi 2627 là lỗi trùng lập Username
                 if (ex.Number == 2627)
                 {
                     MessageBox.Show("Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.", "Lỗi Database");
@@ -187,4 +186,4 @@ namespace Cinema_Management
         public string KhuVuc { get; set; }
     }
 }
-// day la pull test
+

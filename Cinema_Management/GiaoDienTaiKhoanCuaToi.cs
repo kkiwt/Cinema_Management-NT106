@@ -14,9 +14,8 @@ namespace Cinema_Management
 
     public partial class GiaoDienTaiKhoanCuaToi : Form
     {
-        private UserInfo CurrentUser; // Biến lưu trữ thông tin
+        private UserInfo CurrentUser; // Biến / Đối tượng được lưu trữ thông tin
 
-        // Sửa Constructor: Form này BẮT BUỘC nhận đối tượng UserInfo
         public GiaoDienTaiKhoanCuaToi(UserInfo User)
         {
             InitializeComponent();
@@ -27,7 +26,7 @@ namespace Cinema_Management
         // Sử dụng thông tin trong sự kiện Load
         private void GiaoDienTaiKhoanCuaToi_Load(object sender, EventArgs e)
         {
-            // Ví dụ: Gán dữ liệu lên các Label/TextBox
+
             UsernameLabel.Text = "Tên Tài Khoản: " + CurrentUser.Username;
             NameLabel.Text = "Họ Tên: " + CurrentUser.HoTen;
             EmailLabel.Text = "Email: " + CurrentUser.Email;
