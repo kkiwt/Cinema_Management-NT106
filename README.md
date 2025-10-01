@@ -8,5 +8,5 @@ Danh sách nhóm 7:
 + Nguyễn Hữu Chiến 24520218	
 + Nguyễn Thái Hùng 24520613	
 
-Hướng dẫn sử dụng
+Hướng dẫn sử dụng:
 Hiện tại ứng dụng chỉ mới có thể truy cập thông qua việc mở file sln rồi ấn start trên ứng dụng Visual Studio. Trước khi start ứng dụng, cần  kết nối với server local thông qua SQL server. Sau đó sử dụng file USERS-SQL-query.sql để tạo bảng UserClient chứa các thông tin người dùng.
