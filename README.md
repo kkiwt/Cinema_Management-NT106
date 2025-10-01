@@ -12,6 +12,7 @@ Bấm vào phần release, tải về file zip chứa source code và giải né
 
 Giao diện của ứng dụng:
 <img width="965" height="579" alt="Screenshot 2025-10-01 220606" src="https://github.com/user-attachments/assets/474589e4-d783-4ddd-89d9-ec7ca83f9494" />
+<img width="1323" height="931" alt="Screenshot 2025-10-01 221340" src="https://github.com/user-attachments/assets/f88fd17d-3620-4158-8dfd-b01e631c77b2" />
 <img width="1065" height="724" alt="Screenshot 2025-10-01 220627" src="https://github.com/user-attachments/assets/05f452ba-60a7-48e6-9302-9e529e850700" />
 <img width="952" height="594" alt="Screenshot 2025-10-01 220643" src="https://github.com/user-attachments/assets/10580a09-063b-4de5-bb6b-457a8e48a34b" />
 
