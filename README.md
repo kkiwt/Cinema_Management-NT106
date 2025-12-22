@@ -17,5 +17,15 @@ Giao diện của ứng dụng:
 <img width="952" height="594" alt="Screenshot 2025-10-01 220643" src="https://github.com/user-attachments/assets/10580a09-063b-4de5-bb6b-457a8e48a34b" />
 
 
+## 👨‍💻 Phân Công Công Việc
+| STT | Họ và tên | MSSV |
+| :--- | :--- | :--- |
+| 1 | Nguyễn Tuấn Kiệt | Database, Xử Lý Kết Nối |
+| 2 | Hoàng Nhật Huy | Thuật Toán SHA-256 |
+| 3 | Nguyễn Nhật Thanh | Giao Diện Đăng Ký |
+| 4 | Nguyễn Thái Hùng | Giao Diện Trang Chủ Và Tài Khoản Của Tôi |
+| 5 | Nguyễn Hữu Chiến | Giao Diện Đăng Nhập |
+
+
 
 
