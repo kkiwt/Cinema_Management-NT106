@@ -18,7 +18,7 @@ Giao diện của ứng dụng:
 
 
 ## 👨‍💻 Phân Công Công Việc
-| STT | Họ và tên | MSSV |
+| STT | Họ và tên | Công Việc |
 | :--- | :--- | :--- |
 | 1 | Nguyễn Tuấn Kiệt | Database, Xử Lý Kết Nối |
 | 2 | Hoàng Nhật Huy | Thuật Toán SHA-256 |
